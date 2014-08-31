@@ -95,9 +95,13 @@ public class FileSearchPanel extends JPanel {
         add(resultsPanel, BorderLayout.CENTER);
         add(submitButton, BorderLayout.SOUTH);
     }
-    
+
     /**
+     * Takes the given line and searches it for the keyword. Does not analyze
+     * a matching substring. Converts all strings to lower case for comparison.
      * 
+     * @param line Line to search the keyword for
+     * @return Whether the keyword was found within the line
      */
     private boolean searchLine(String line) {
         // Declare a way to track that the keyword is found
@@ -116,16 +120,20 @@ public class FileSearchPanel extends JPanel {
             
             // Check if the current word equals the keyword
             if (word.equals(keywordTextField.getText().toLowerCase())) {
+                // Mark the keyword as found
                 found = true;
                 
+                // Initialize a new String Builder to append the line # and line
                 StringBuilder sb = new StringBuilder();
                 
+                // Create the line result
                 sb.append(LINE);
                 sb.append(String.valueOf(lineCount));
                 sb.append(COLON);
                 sb.append(line);
                 sb.append(NEW_LINE);
                 
+                // Display the result in the text area
                 resultsTextArea.append(sb.toString());
             }
         }
@@ -178,6 +186,9 @@ public class FileSearchPanel extends JPanel {
     private class FileListener implements ActionListener {
 
         /**
+         * Loads the file specified by the user and begins processing the file.
+         * Calls searchLine to check if the keyword is within the file. Displays
+         * not found message when keyword is not discovered.
          * 
          * @param e Event fired when the button is pressed
          */

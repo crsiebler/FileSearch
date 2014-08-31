@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 public class FileSearch {
 
     /**
+     * Initializes the frame and the panel to search files.
+     * 
      * @param args the command line arguments
      */
     public static void main(String[] args) {
