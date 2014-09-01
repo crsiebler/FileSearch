@@ -36,10 +36,10 @@ public class FileSearchPanel extends JPanel {
     // Declare the GUI components
     private JLabel keywordLabel;
     private JLabel resultsLabel;
-    private JTextField keywordTextField;
+    private JTextField keywordField;
     private JFileChooser fileChooser;
     private JButton submitButton;
-    private JTextArea resultsTextArea;
+    private JTextArea resultsArea;
     private JScrollPane scrollPane;
     
     // Declare the line counter
@@ -59,18 +59,18 @@ public class FileSearchPanel extends JPanel {
         // Initialize the Components
         keywordLabel = new JLabel("Keyword:");
         resultsLabel = new JLabel("Results:");
-        keywordTextField = new JTextField();
+        keywordField = new JTextField();
         fileChooser = new JFileChooser();
         submitButton = new JButton("Select File");
-        resultsTextArea = new JTextArea(20, 50);
-        scrollPane = new JScrollPane(resultsTextArea);
+        resultsArea = new JTextArea(20, 50);
+        scrollPane = new JScrollPane(resultsArea);
         
-        // Initialize the Panels & Separator for GUI styling
+        // Initialize the Panels for GUI styling
         JPanel keywordPanel = new JPanel();
         JPanel resultsPanel = new JPanel();
         
         // Do not allow the user to edit the text area
-        resultsTextArea.setEditable(false);
+        resultsArea.setEditable(false);
         
         // Show a scroll bar for the text area when needed
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -86,7 +86,7 @@ public class FileSearchPanel extends JPanel {
         
         // Add the components to the subpanels
         keywordPanel.add(keywordLabel);
-        keywordPanel.add(keywordTextField);
+        keywordPanel.add(keywordField);
         resultsPanel.add(resultsLabel, BorderLayout.NORTH);
         resultsPanel.add(scrollPane, BorderLayout.CENTER);
         
@@ -119,7 +119,7 @@ public class FileSearchPanel extends JPanel {
             String word = scanner.next().toLowerCase();
             
             // Check if the current word equals the keyword
-            if (word.equals(keywordTextField.getText().toLowerCase())) {
+            if (word.equals(keywordField.getText().toLowerCase())) {
                 // Mark the keyword as found
                 found = true;
                 
@@ -134,7 +134,7 @@ public class FileSearchPanel extends JPanel {
                 sb.append(NEW_LINE);
                 
                 // Display the result in the text area
-                resultsTextArea.append(sb.toString());
+                resultsArea.append(sb.toString());
             }
         }
         
@@ -171,11 +171,11 @@ public class FileSearchPanel extends JPanel {
             // Check if the keyword was found at all
             if (!found) {
                 // Keyword was not found so display a message to the user
-                resultsTextArea.append(NOT_FOUND);
+                resultsArea.append(NOT_FOUND);
             }
         } catch (FileNotFoundException ex) {
             // Error occurred while searching so display the error to user
-            resultsTextArea.setText(ex.getMessage());
+            resultsArea.setText(ex.getMessage());
         }
     }
     
@@ -195,10 +195,10 @@ public class FileSearchPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             // Clear the text area before displaying results
-            resultsTextArea.setText("");
+            resultsArea.setText("");
             
             // Make sure the user inputted a keyword
-            if (!keywordTextField.getText().isEmpty()) {
+            if (!keywordField.getText().isEmpty()) {
                 // Allow the user to only select text files
                 fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 fileChooser.setFileFilter(
@@ -217,7 +217,7 @@ public class FileSearchPanel extends JPanel {
                     searchFile(file);
                 }
             } else {
-                resultsTextArea.append("Please enter a keyword to search");
+                resultsArea.append("Please enter a keyword to search");
             }
         }
         
