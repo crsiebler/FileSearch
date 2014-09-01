@@ -45,6 +45,9 @@ public class FileSearchPanel extends JPanel {
     // Declare the line counter
     private int lineCount;
     
+    // Declare the search keyword
+    private String keyword;
+    
     /**
      * Constructor
      */
@@ -119,7 +122,7 @@ public class FileSearchPanel extends JPanel {
             String word = scanner.next().toLowerCase();
             
             // Check if the current word equals the keyword
-            if (word.equals(keywordField.getText().toLowerCase())) {
+            if (word.equals(keyword)) {
                 // Mark the keyword as found
                 found = true;
                 
@@ -212,6 +215,9 @@ public class FileSearchPanel extends JPanel {
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     // Grab the path for the user selected file
                     File file = fileChooser.getSelectedFile();
+        
+                    // Set the keyword to the user input
+                    keyword = keywordField.getText().trim().toLowerCase();
 
                     // Parse through the file and look for the keyword
                     searchFile(file);
