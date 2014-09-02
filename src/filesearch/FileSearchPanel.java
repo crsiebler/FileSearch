@@ -2,7 +2,11 @@
 //  Name: Cory Siebler
 //  StudentID: 1000832292
 //  Lecture Topic: CSE 494 @ 7:30 MW
-//  Description: (Description of each file/class)
+//  Description: Takes the keyword defined by the user and searches a file for
+//              a matching value. Utilizes the Scanner class to parse the file
+//              and String comparison to determine if it matches any word within
+//              the file. If a match is found then the program will print the
+//              entire line where the keyword was found.
 package filesearch;
 
 import java.awt.BorderLayout;
@@ -22,6 +26,10 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
+ * Takes the keyword defined by the user and searches a file for a matching
+ * value. Utilizes the Scanner class to parse the file and String comparison to
+ * determine if it matches any word within the file. If a match is found then
+ * the program will print the entire line where the keyword was found.
  *
  * @author csiebler
  */
