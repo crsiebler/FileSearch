@@ -29,7 +29,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * Takes the keyword defined by the user and searches a file for a matching
  * value. Utilizes the Scanner class to parse the file and String comparison to
  * determine if it matches any word within the file. If a match is found then
- * the program will print the entire line where the keyword was found.
+ * the program will print the <strong>entire line</strong> where the keyword was
+ * found.
  *
  * @author csiebler
  */
@@ -109,7 +110,8 @@ public class FileSearchPanel extends JPanel {
 
     /**
      * Takes the given line and searches it for the keyword. Does not analyze
-     * a matching substring. Converts all strings to lower case for comparison.
+     * a matching substring. Converts all strings to <strong>lower case</strong>
+     * for comparison.
      * 
      * @param line Line to search the keyword for
      * @return Whether the keyword was found within the line
@@ -153,7 +155,13 @@ public class FileSearchPanel extends JPanel {
     }
     
     /**
-     * Analyze the file for the matching 
+     * Analyze the file for the matching keyword. Searching the file
+     * line-by-line.
+     * <code>
+     * while (scanner.hasNextLine()) {
+     *  searchLine(scanner.nextLine());
+     * }
+     * </code>
      * 
      * @param file 
      */
